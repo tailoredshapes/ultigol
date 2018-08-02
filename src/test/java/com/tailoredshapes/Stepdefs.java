@@ -20,11 +20,20 @@ public class Stepdefs implements En{
 
         When("^we advance the game$", () -> GameOfLife.next(this.game));
 
-        Then("^the cell (\\d+),(\\d+) should be alive$", (Integer x, Integer y) -> assertTrue(GameOfLife.isAlive(game, new Coord(x,y))));
+        Then("^the cell (\\d+),(\\d+) should be alive$", (Integer x, Integer y) -> assertTrue(new Coord(x,y) + " was incorrectly Dead", GameOfLife.isAlive(game, new Coord(x,y))));
 
-        Then("^the cell (\\d+),(\\d+) should be dead$", (Integer x, Integer y) -> assertFalse(GameOfLife.isAlive(game, new Coord(x,y))));
+        Then("^the cell (\\d+),(\\d+) should be dead$", (Integer x, Integer y) -> assertFalse(new Coord(x,y) + " was incorrectly Alive", GameOfLife.isAlive(game, new Coord(x,y))));
 
-        Then("^the game state is:", (String state) -> assertEquals(game, processCSVGame(state)));
+        Then("^the game state is:", (String state) -> {
+            Set<Coord> processedState = processCSVGame(state);
+            if(!game.equals(processedState)) {
+                System.out.println("Expected: ");
+                System.out.println(GameOfLife.stringify(processedState));
+                System.out.println("Actual: ");
+                System.out.println(GameOfLife.stringify(game));
+                throw new Exception();
+            }
+        });
     }
 
     public static Set<Coord> processCSVGame(String csv){
