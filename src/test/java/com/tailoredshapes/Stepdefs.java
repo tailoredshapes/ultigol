@@ -1,6 +1,5 @@
 package com.tailoredshapes;
 
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 
 import java.util.HashSet;
@@ -8,7 +7,6 @@ import java.util.List;
 import java.util.Set;
 
 import static com.tailoredshapes.underbar.UnderBar.map;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -18,7 +16,7 @@ public class Stepdefs implements En{
     public Stepdefs() {
         Given("^we have a game:", (String game) -> this.game = processCSVGame(game));
 
-        When("^we advance the game$", () -> GameOfLife.next(this.game));
+        When("^we advance the game$", () -> game = GameOfLife.next(this.game));
 
         Then("^the cell (\\d+),(\\d+) should be alive$", (Integer x, Integer y) -> assertTrue(new Coord(x,y) + " was incorrectly Dead", GameOfLife.isAlive(game, new Coord(x,y))));
 
@@ -26,6 +24,7 @@ public class Stepdefs implements En{
 
         Then("^the game state is:", (String state) -> {
             Set<Coord> processedState = processCSVGame(state);
+
             if(!game.equals(processedState)) {
                 System.out.println("Expected: ");
                 System.out.println(GameOfLife.stringify(processedState));
