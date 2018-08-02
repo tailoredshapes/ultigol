@@ -1,8 +1,11 @@
 package com.tailoredshapes;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import static com.tailoredshapes.underbar.UnderBar.map;
 import static com.tailoredshapes.underbar.UnderBar.reduce;
+import static com.tailoredshapes.underbar.UnderBar.set;
 
 public class GameOfLife {
 
@@ -21,7 +24,27 @@ public class GameOfLife {
     }
 
     public static Set<Coord> next(Set<Coord> game) {
-        return game;
+        HashSet<Coord> interestingCoordinates = reduce(
+                map(game, GameOfLife::getNeighbours),
+                new HashSet<>(),
+                (s, cs) -> {
+                    s.addAll(cs);
+                    return s;
+                });
+
+        return reduce(interestingCoordinates, new HashSet<>(), (s, c) -> {
+            int livingNeighbours = countNeighbours(game, c);
+            switch (livingNeighbours) {
+                case 2:
+                    if(isAlive(game, c)) s.add(c);
+                    return s;
+                case 3:
+                    s.add(c);
+                    return s;
+                default:
+                    return s;
+            }
+        });
     }
 
     public static Coord minCoord(Set<Coord> game){
@@ -55,5 +78,22 @@ public class GameOfLife {
             bob.append("\n");
         }
         return bob.toString();
+    }
+
+    public static Set<Coord> getNeighbours(Coord coord){
+        return set(
+                new Coord(coord.X - 1, coord.Y - 1),
+                new Coord(coord.X, coord.Y - 1),
+                new Coord(coord.X + 1, coord.Y - 1),
+                new Coord(coord.X + 1, coord.Y),
+                new Coord(coord.X + 1, coord.Y + 1),
+                new Coord(coord.X, coord.Y + 1),
+                new Coord(coord.X - 1, coord.Y + 1),
+                new Coord(coord.X - 1, coord.Y)
+        );
+    }
+
+    public static int countNeighbours(Set<Coord> game, Coord coord) {
+        return reduce(getNeighbours(coord), 0, (count, c) -> isAlive(game, c) ? ++count : count);
     }
 }
