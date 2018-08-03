@@ -8,4 +8,4 @@ Feature: A game starts dead
     0,0,0
     0,0,0
     """
-    Then the cell 0,0 should be dead
+    Then the cell
