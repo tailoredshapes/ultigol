@@ -1,19 +1,24 @@
 package com.tailoredshapes;
 
-import cucumber.api.PendingException;
 import cucumber.api.java8.En;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.Assert.assertFalse;
+
 public class Stepdefs implements En{
+
+    private Set<Object> game;
+
     public Stepdefs() {
 
         Given("we have a game:", (String docString) -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            game = new HashSet<>();
         });
 
         Then("the cell {double} should be dead", (Double double1) -> {
-            // Write code here that turns the phrase above into concrete actions
-            throw new PendingException();
+            assertFalse(false);
         });
 
     }
