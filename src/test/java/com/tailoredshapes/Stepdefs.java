@@ -40,10 +40,12 @@ public class Stepdefs implements En {
     public static Set<Coord> parseLife(String docString){
         HashSet<Coord> game = new HashSet<>();
         String[] lines = docString.split("\n");
-        List<String[]> state = map(lines, (line) -> line.split(","));
+
+        List<char[]> state = map(lines, String::toCharArray);
+
         for(int x = 0; x < state.size(); x++){
             for(int y = 0; y < state.get(x).length; y++){
-                if(state.get(x)[y].equals("X")){
+                if(state.get(x)[y] == '0' ){
                     game.add(new Coord(x,y));
                 }
             }

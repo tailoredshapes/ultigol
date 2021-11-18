@@ -73,7 +73,7 @@ public class GameOfLife {
 
         for(int x = min.X; x < max.X; x++){
             for(int y = min.Y; y < max.Y; y++){
-                bob.append(isAlive(game, new Coord(x,y)) ? "X," : "0,");
+                bob.append(isAlive(game, new Coord(x,y)) ? "0" : ".");
             }
             bob.append("\n");
         }
