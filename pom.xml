@@ -23,22 +23,29 @@
       <artifactId>ocho</artifactId>
       <version>0.1.1</version>
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>io.cucumber</groupId>-->
+<!--      <artifactId>cucumber-java8</artifactId>-->
+<!--      <version>7.0.0</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+
     <dependency>
       <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-java8</artifactId>
-      <version>3.0.2</version>
+      <artifactId>cucumber-java</artifactId>
+      <version>7.0.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-junit</artifactId>
-      <version>3.0.2</version>
+      <version>7.0.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

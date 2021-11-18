@@ -1,6 +1,13 @@
 package com.tailoredshapes;
 
-import cucumber.api.java8.En;
+
+import io.cucumber.datatable.DataTable;
+import io.cucumber.docstring.DocString;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,20 +17,32 @@ import static com.tailoredshapes.underbar.UnderBar.map;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class Stepdefs implements En{
+public class Stepdefs{
     private Set<Coord> game;
 
-    public Stepdefs() {
-        Given("^we have a game:", (String game) -> this.game = processCSVGame(game));
+    @Given("^we have a game:")
+    public void we_have_a_game(DocString game){
+        this.game = processCSVGame(game.getContent());
+    }
 
-        When("^we advance the game$", () -> game = GameOfLife.next(this.game));
+    @When("^we advance the game$")
+    public void we_advance_the_game(){
+        game = GameOfLife.next(this.game);
+    }
 
-        Then("^the cell (\\d+),(\\d+) should be alive$", (Integer x, Integer y) -> assertTrue(new Coord(x,y) + " was incorrectly Dead", GameOfLife.isAlive(game, new Coord(x,y))));
+    @Then("^the cell (\\d+),(\\d+) should be alive$")
+    public void the_cell_should_be_alive(Integer x, Integer y){
+        assertTrue(new Coord(x,y) + " was incorrectly Dead", GameOfLife.isAlive(game, new Coord(x,y)));
+    }
 
-        Then("^the cell (\\d+),(\\d+) should be dead$", (Integer x, Integer y) -> assertFalse(new Coord(x,y) + " was incorrectly Alive", GameOfLife.isAlive(game, new Coord(x,y))));
+    @Then("^the cell (\\d+),(\\d+) should be dead$")
+    public void the_cell_should_be_dead(Integer x, Integer y){
+        assertFalse(new Coord(x,y) + " was incorrectly Alive", GameOfLife.isAlive(game, new Coord(x,y)));
+    }
 
-        Then("^the game state is:", (String state) -> {
-            Set<Coord> processedState = processCSVGame(state);
+    @Then("^the game state is:")
+    public void the_game_state_is(DocString state) throws Exception{
+        Set<Coord> processedState = processCSVGame(state.getContent());
 
             if(!game.equals(processedState)) {
                 System.out.println("Expected: ");
@@ -32,7 +51,6 @@ public class Stepdefs implements En{
                 System.out.println(GameOfLife.stringify(game));
                 throw new Exception();
             }
-        });
     }
 
     public static Set<Coord> processCSVGame(String csv){

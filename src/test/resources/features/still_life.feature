@@ -1,7 +1,7 @@
 Feature: Stable patterns
   Scenario: Block
     Given we have a game:
-      """
+      """world
       0,0,0,0
       0,X,X,0
       0,X,X,0
@@ -9,7 +9,7 @@ Feature: Stable patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """world
       0,0,0,0
       0,X,X,0
       0,X,X,0
@@ -18,7 +18,7 @@ Feature: Stable patterns
 
   Scenario: Behive
     Given we have a game:
-      """
+      """world
       0,0,0,0,0,0
       0,0,X,X,0,0
       0,X,0,0,X,0
@@ -27,7 +27,7 @@ Feature: Stable patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """world
       0,0,0,0,0,0
       0,0,X,X,0,0
       0,X,0,0,X,0
@@ -37,7 +37,7 @@ Feature: Stable patterns
 
   Scenario: Loaf
     Given we have a game:
-      """
+      """world
       0,0,0,0,0,0
       0,0,X,X,0,0
       0,X,0,0,X,0
@@ -47,7 +47,7 @@ Feature: Stable patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """world
       0,0,0,0,0,0
       0,0,X,X,0,0
       0,X,0,0,X,0
@@ -58,7 +58,7 @@ Feature: Stable patterns
 
   Scenario: Tub
     Given we have a game:
-      """
+      """world
       0,0,0,0,0
       0,0,X,0,0
       0,X,0,X,0
@@ -67,7 +67,7 @@ Feature: Stable patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """world
       0,0,0,0,0
       0,0,X,0,0
       0,X,0,X,0
