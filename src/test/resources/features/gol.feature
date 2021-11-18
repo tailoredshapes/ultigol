@@ -6,7 +6,7 @@ Feature: Main game
 
   Scenario: A cell starts dead
    Given we have a game:
-    """
+    """life
     0,0,0
     0,0,0
     0,0,0
@@ -15,7 +15,7 @@ Feature: Main game
 
   Scenario: A cell can be bought to life
     Given we have a game:
-      """
+      """life
       X,0,0
       0,0,0
       0,0,0
@@ -25,7 +25,7 @@ Feature: Main game
 
   Scenario: Loneliness
     Given we have a game:
-      """
+      """life
       X,0,0
       0,0,0
       0,0,0
@@ -35,14 +35,14 @@ Feature: Main game
 
   Scenario: Survival with 2 neighbours and a little reproduction
     Given we have a game:
-      """
+      """life
       0,0,0,0,0
       0,X,X,X,0
       0,0,0,0,0
       """
      When we advance the game
      Then the game state is:
-      """
+      """life
       0,0,X,0,0
       0,0,X,0,0
       0,0,X,0,0
@@ -51,7 +51,7 @@ Feature: Main game
 
   Scenario: Explode
     Given we have a game:
-      """
+      """life
       0,0,0,0,0
       0,X,X,X,0
       0,X,X,X,0
@@ -60,7 +60,7 @@ Feature: Main game
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,X,0,0
       0,X,0,X,0
       X,0,0,0,X
@@ -70,14 +70,14 @@ Feature: Main game
 
   Scenario: Reproduction
     Given we have a game:
-      """
+      """life
       X,X,0
       X,0,0
       0,0,0
       """
      When we advance the game
      Then the game state is:
-      """
+      """life
       X,X,0
       X,X,0
       0,0,0

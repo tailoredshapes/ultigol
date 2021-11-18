@@ -1,7 +1,7 @@
 Feature: Oscillating patterns
   Scenario: Blinker
     Given we have a game:
-      """
+      """life
       0,0,0,0,0
       0,0,X,0,0
       0,0,X,0,0
@@ -10,7 +10,7 @@ Feature: Oscillating patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,0,0,0
       0,0,0,0,0
       0,X,X,X,0
@@ -19,7 +19,7 @@ Feature: Oscillating patterns
       """
 
     Given we have a game:
-      """
+      """life
       0,0,0,0,0
       0,0,0,0,0
       0,X,X,X,0
@@ -28,7 +28,7 @@ Feature: Oscillating patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,0,0,0
       0,0,X,0,0
       0,0,X,0,0
@@ -38,7 +38,7 @@ Feature: Oscillating patterns
 
   Scenario: Blinker
     Given we have a game:
-      """
+      """life
       0,0,0,0,0,0
       0,0,0,X,0,0
       0,X,0,0,X,0
@@ -48,7 +48,7 @@ Feature: Oscillating patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,0,0,0,0
       0,0,0,0,0,0
       0,0,X,X,X,0
@@ -58,7 +58,7 @@ Feature: Oscillating patterns
       """
 
     Given we have a game:
-      """
+      """life
       0,0,0,0,0,0
       0,0,0,0,0,0
       0,0,X,X,X,0
@@ -68,7 +68,7 @@ Feature: Oscillating patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,0,0,0,0
       0,0,0,X,0,0
       0,X,0,0,X,0
@@ -79,7 +79,7 @@ Feature: Oscillating patterns
 
   Scenario: Beacon
     Given we have a game:
-      """
+      """life
       0,0,0,0,0,0
       0,X,X,0,0,0
       0,X,0,0,0,0
@@ -89,7 +89,7 @@ Feature: Oscillating patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,0,0,0,0
       0,X,X,0,0,0
       0,X,X,0,0,0
@@ -99,7 +99,7 @@ Feature: Oscillating patterns
       """
 
     Given we have a game:
-      """
+      """life
       0,0,0,0,0,0
       0,X,X,0,0,0
       0,X,X,0,0,0
@@ -109,7 +109,7 @@ Feature: Oscillating patterns
       """
     When we advance the game
     Then the game state is:
-      """
+      """life
       0,0,0,0,0,0
       0,X,X,0,0,0
       0,X,0,0,0,0
